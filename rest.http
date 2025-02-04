@@ -1,5 +1,5 @@
 ### Get Request
-GET http://localhost:8000
+GET http://localhost:8000?id=1&fName=Umesh&lName=Dhakal
 
 
 ### Post Method
@@ -8,7 +8,21 @@ Content-Type: application/json
 
 {
     "id":"3",
-    "fName":"Sanjay",
+    "fName":"Sanjay", 
     "lName":"Karki"
 }
 
+### Put Method
+PUT http://localhost:8000
+Content-Type: application/json
+Authorization: special
+
+{
+    "id":"2",
+    "fName":"Ball",
+    "lName":"Bhnadari"
+}
+
+### Delete Method
+DELETE http://localhost:8000/4
+Content-Type: application/json
