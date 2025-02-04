@@ -1,15 +1,16 @@
 import express from "express";
 
-import userRouter from "/src/UserRouter";
+const app = express();
+
+import userRouter from "./src/UserRouter.js";
+
+// Using middleware for the post body
+app.use(express.json());
 
 // using the middleware
 app.use("/api/v1/users", userRouter);
 
-const app = express();
 const PORT = 8000;
-
-// Using middleware for the post body
-app.use(express.json());
 
 // Using the CRUD methods on the server
 

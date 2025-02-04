@@ -2,6 +2,19 @@ import express from "express";
 
 const router = express.Router();
 
+let DB = [
+  {
+    id: 1,
+    fName: "Bishes",
+    lName: "Adhikari",
+  },
+  {
+    id: 2,
+    fName: "LAB",
+    lName: "Bhandari ",
+  },
+];
+
 // GET MEthod
 router.get("/", (req, res) => {
   console.log(req.query);
@@ -29,25 +42,25 @@ router.put("/", (req, res) => {
   });
 });
 
-let DB = [
-  {
-    id: 1,
-    fName: "Bishes",
-    lName: "Adhikari",
-  },
-  {
-    id: 2,
-    fName: "LAB",
-    lName: "Bhandari ",
-  },
-];
-
 // Delete Method
 router.delete("/:id?", (req, res) => {
-  console.log(req.params);
-  DB.push(req.params);
+  const { id } = req.params;
+
+  const initialLength = DB.length;
+
+  // Filter out the object
+  DB = DB.filter((item) => item.id !== +id);
+
+  // Check if the object is actually deleted
+  if (DB.length === initialLength) {
+    return res.status(404).json({
+      message: "User not found",
+    });
+  }
+
   res.json({
-    message: "delete method",
+    message: `User with id ${id} deleted`,
+    DB,
   });
 });
 
